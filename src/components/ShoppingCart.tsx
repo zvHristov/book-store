@@ -1,4 +1,6 @@
 import React from 'react';
+import { Box, Heading, List, ListItem, Text, Button } from '@chakra-ui/core';
+
 interface CartItemIF {
     id: number;
     title: string;
@@ -7,22 +9,29 @@ interface CartItemIF {
 
 interface ShoppingCartProps {
     cartItems: CartItemIF[];
+    onSubmit: () => void;
 }
 
-const ShoppingCart: React.FC<ShoppingCartProps> = ({ cartItems }) => {
+const ShoppingCart: React.FC<ShoppingCartProps> = ({ cartItems, onSubmit }) => {
     const totalPrice = cartItems.reduce((acc, item) => acc + item.price, 0);
 
   return (
-    <aside className="cart">
-        <h2>Shopping Cart</h2>
-        <ul>
+    <Box borderWidth="1px" borderRadius="lg" p={4} position="fixed" right={0} top={0} width="300px" bg="white">
+        <Heading size="md">Shopping Cart</Heading>
+        <List spacing={3}>
             {cartItems.map(item => (
-                <li key={item.id}>{item.title} - ${item.price}</li>
+                <ListItem key={item.id}>
+                    <Text>{item.title} - ${item.price}</Text>
+                </ListItem>
             ))}
-        </ul>
-        <p>Total: ${totalPrice}</p>
-        <button>Submit</button>
-     </aside>
+        </List>
+        <Text fontWeight="bold" mt={4}>Total: ${totalPrice}</Text>
+        <Button
+            onClick={onSubmit}
+            colorScheme="blue"
+            mt={4}
+        >Submit</Button>
+     </Box>
   )
 }
 

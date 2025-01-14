@@ -1,0 +1,1 @@
+export const formattedText = (text: string) => text.replace(/&#39;/g, " ");

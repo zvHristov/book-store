@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-
+import {
+     Grid, 
+     Box, 
+     Input, 
+     Button,
+     FormControl,
+     FormLabel,
+} from "@chakra-ui/core";
 
 const UserProfilePage: React.FC = () => {
   const [formData, setFormData] = useState<{ firstName: string; lastName: string; email: string }>({
@@ -21,12 +28,54 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 }
 
   return (
-    <form onSubmit={handleSubmit}>
-    <input name="firstName" placeholder="First Name" onChange={handleChange} />
-    <input name="lastName" placeholder="Last Name" onChange={handleChange} />
-    <input name="email" type="email" placeholder="Email" onChange={handleChange} required />
-    <button type="submit">Update Profile</button>
-</form>
+    <Grid gridRow="1/2" gap={2} className='container'>
+    <FormControl onSubmit={handleSubmit} isRequired>
+        <Box p={4}>
+            <Box p={1}>
+                <FormLabel htmlFor="firstName">Last Name</FormLabel>
+                <Input
+                    id="firstName"
+                    name="firstName" 
+                    placeholder="First Name" 
+                    onChange={handleChange}
+                    size="sm"
+                    variant="flushed"
+                />
+            </Box>
+            <Box p={1}>
+                <FormLabel htmlFor="lastName">Last Name</FormLabel>
+                <Input
+                    id="lastName"
+                    name="lastName" 
+                    placeholder="Last Name" 
+                    onChange={handleChange}
+                    size="sm"
+                    variant="flushed"
+                />
+            </Box>
+            <Box p={1}>
+                <FormLabel htmlFor="email">Email address</FormLabel>
+                <Input
+                    id="email"
+                    name="email" 
+                    type="email" 
+                    placeholder="Email" 
+                    onChange={handleChange}
+                    size="sm"
+                    variant="flushed"
+                />
+            </Box>
+        </Box>
+        <Box textAlign="center">
+        <Button 
+            type="submit"
+            size="md"
+            variantColor="blue"
+            aria-label="Update Profile"
+        >Update Profile</Button>
+        </Box>
+    </FormControl>
+    </Grid>
   )
 }
 
