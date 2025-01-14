@@ -18,6 +18,7 @@ const UserProfilePage: React.FC = () => {
     email: ''
 });
 const [message, setMessage] = useState<string>("");
+const [success, setSuccess] = useState<string>("");
 
 const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -28,7 +29,7 @@ const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 
 const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(formData);
+    setSuccess("Success submited");
 }
 
 const validateEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,14 +91,17 @@ const validateEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
             </Box>
         </Box>
         <Box textAlign="center">
-        <Button 
+        <Button
+            onClick={handleSubmit}
             type="submit"
             size="md"
             variantColor="blue"
             aria-label="Update Profile"
         >Update Profile</Button>
+            <Text>{success !== '' ? success : ''}</Text>
         </Box>
     </FormControl>
+
     </Grid>
   )
 }

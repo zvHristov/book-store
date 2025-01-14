@@ -1,9 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useState, ReactNode } from 'react';
 import { CartItemIF } from '../types';
 
 interface CartContextType {
     cartItems: CartItemIF[];
     addToCart: (item: CartItemIF) => void;
+    removeFromCart: (id: nnumber) => void;
 }
 
 export const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -24,8 +25,12 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         });
     };
 
+    const removeFromCart = (id: number) => {
+        setCartItems(prevItems => prevItems.filter(item => item.id !== id));
+    };
+
     return (
-        <CartContext.Provider value={{ cartItems, addToCart }}>
+        <CartContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
             {children}
         </CartContext.Provider>
     );
