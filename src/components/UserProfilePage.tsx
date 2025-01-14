@@ -6,7 +6,10 @@ import {
      Button,
      FormControl,
      FormLabel,
+     Text
 } from "@chakra-ui/core";
+import validator from 'validator';
+import { getInitials } from '../common';
 
 const UserProfilePage: React.FC = () => {
   const [formData, setFormData] = useState<{ firstName: string; lastName: string; email: string }>({
@@ -14,21 +17,40 @@ const UserProfilePage: React.FC = () => {
     lastName: '',
     email: ''
 });
+const [message, setMessage] = useState<string>("");
 
-const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
         ...formData,
-        [e.target.name]: e.target.value
+        [event.target.name]: event.target.value
     });
 }
 
-const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     console.log(formData);
+}
+
+const validateEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    console.log(event.target.value);
+    const newEmail = event.target.value;
+    if (validator.isEmail(newEmail)) {
+        setMessage("Valid Email");
+        setFormData({
+            ...formData,
+            email: newEmail
+        });
+    } else {
+        setMessage("Please enter a valid email!");
+    }
 }
 
   return (
     <Grid gridRow="1/2" gap={2} className='container'>
+    <Box mt={4} p={4} borderWidth="1px" borderRadius="sm" bg="white">
+        <Text fontSize="2xl">{getInitials(formData.firstName, formData.lastName)}</Text>
+    </Box>
     <FormControl onSubmit={handleSubmit} isRequired>
         <Box p={4}>
             <Box p={1}>
@@ -60,10 +82,11 @@ const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
                     name="email" 
                     type="email" 
                     placeholder="Email" 
-                    onChange={handleChange}
+                    onChange={validateEmail}
                     size="sm"
                     variant="flushed"
                 />
+                <Text>{message !== '' ? message : ''}</Text>
             </Box>
         </Box>
         <Box textAlign="center">
