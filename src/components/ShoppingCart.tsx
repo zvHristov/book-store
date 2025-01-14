@@ -1,12 +1,7 @@
 import React from 'react';
 import { Box, Heading, List, ListItem, Text, Button } from '@chakra-ui/core';
-
-interface CartItemIF {
-    id: number;
-    title: string;
-    price: number;
-}
-
+import { CartItemIF } from '../types';
+import { formattedText } from '../common';
 interface ShoppingCartProps {
     cartItems: CartItemIF[];
     onSubmit: () => void;
@@ -21,14 +16,14 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({ cartItems, onSubmit }) => {
         <List spacing={3}>
             {cartItems.map(item => (
                 <ListItem key={item.id}>
-                    <Text>{item.title} - ${item.price}</Text>
+                    <Text>{formattedText(item.title)} - ${item.price}</Text>
                 </ListItem>
             ))}
         </List>
         <Text fontWeight="bold" mt={4}>Total: ${totalPrice}</Text>
         <Button
             onClick={onSubmit}
-            colorScheme="blue"
+            color={"blue.500"}
             mt={4}
         >Submit</Button>
      </Box>

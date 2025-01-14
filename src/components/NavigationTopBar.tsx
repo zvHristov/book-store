@@ -1,33 +1,19 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import { Link } from 'react-router-dom'
 import ShoppingCart from './ShoppingCart';
 import { Grid, Box } from "@chakra-ui/core";
+import { useCart } from '../hooks/useCart';
 
 const NavigationTopBar: React.FC = () => {
-    const [cartItems, setCartItems] = useState<{
-        id: number;
-        title: string;
-        author: string;
-        price: number;
-        stock: number;
-      }[]>([]);
-    
-      const handlingAddToCart = (book: {
-        id: number;
-        title: string;
-        author: string;
-        price: number;
-        stock: number;
-      }) => {
-        const newCartItems = [...cartItems, book];
-        setCartItems(newCartItems);
-      };
-    
-      const handlingSubmit = () => {
+
+    const { cartItems } = useCart();
+
+    const handlingSubmit = () => {
         console.log(cartItems);
         //reset cart items
-        setCartItems([]);
-      };
+
+    };
+    console.log(cartItems, 'cartItems NavigationTopBar')
   return (
     <Grid templateColumns="repeat(5, 1fr)" gap={6}>
         <Box>
