@@ -1,13 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router";
+import NavigationTopBar from './components/NavigationTopBar';
+import Books from './components/BooksPage';
+import UserProfile from './components/UserProfilePage';
+
 import './App.css'
 
-function App() {
+const App: React.FC = () => { 
 
   return (
-    <>
-    </>
+    <div className="main-container">
+      <h1>Book Store</h1>
+      <BrowserRouter>
+        <NavigationTopBar />
+        <Routes>
+          <Route path="/" element={<Books />} />
+          <Route path="/about" element={<UserProfile />} />
+        </Routes>
+        </BrowserRouter>
+    </div>
   )
 }
 

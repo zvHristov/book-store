@@ -4,18 +4,17 @@
   padding: 2rem;
   text-align: center;
 }
+nav {
+  display: flex;
+  justify-content: space-around;
+}
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.cart {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 250px;
+  background-color: #f9f9f9;
 }
 
 @keyframes logo-spin {
