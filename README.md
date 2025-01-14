@@ -5,22 +5,6 @@ Book store
 
 This is a simple React application for an online bookstore that allows users to browse available books, add books to a shopping cart, and update their profile. The application uses Chakra UI for styling and Context API for managing the cart state.
 
-## Application Structure
-
-src/
-├── components/
-│ ├── NavigationBar.tsx # Navigation component
-│ ├── BooksPage.tsx # Page displaying available books
-│ ├── UserProfilePage.tsx # Page for updating user profile
-│ └── ShoppingCart.tsx # Shopping cart component
-├── context/
-│ └── CartContext.tsx # Context for managing the cart
-├── data/
-│ └── mockData.ts # Mock data for books
-├── App.tsx # Main application component
-└── index.tsx # Entry point of the application
-
-
 ## Key Technical Choices
 
 - **React**: Used React for building the user interface.
